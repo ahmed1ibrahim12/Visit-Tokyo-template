@@ -1,0 +1,407 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap');
+@import "../SCSS/Helpers/mixins";
+@import "../SCSS/Helpers/functions";
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    scroll-behavior: smooth;
+}
+
+a{
+    transition: 0.6s;
+}
+
+body {
+    background-color: $bg-color;
+}
+
+//Header swction
+header{
+    height: 100vh;
+    background-image: url(../Images/main.jpg);
+    @include background-image;
+    background-attachment: fixed;
+    .header-container{
+    background: $fade-color;
+    width: 100%;
+    height: 100%;
+    }
+    .navbar{
+        width: 100%;
+        @include center-items;
+        justify-content: space-around;
+        .navlink{
+        color: $text-color;
+        text-decoration: none;
+        padding: 1rem;
+        font-size: large;
+        opacity: 0.7;
+        &:hover{
+            opacity: 1;
+            border-bottom: 3px solid red;
+        }
+        }
+        .logo{
+            opacity: 1 !important;
+            cursor: pointer;
+            @extend .navlink;
+            border-bottom: 3px solid red;
+        }
+    }
+    .content{
+        @include center-items;
+        height: calc(100% - 62px);
+        justify-content: flex-start;
+        margin-left: 10%;
+        .header-title{
+            font-size: 7rem;
+            color: $text-color;
+        }
+    }
+}
+
+//about section
+//text section
+.main-section{
+    min-height: 100vh;
+    .main-text{
+        @include center-items;
+        margin: 0 2rem;
+        .content{
+            display: inline-block;
+            width: 33%;
+            padding: 1rem;
+            height: 200px;
+            border-bottom: 3px solid #ccc;
+            cursor: pointer;
+            .title p{
+                @include title;
+                text-align: justify;
+                i{
+                    color: $secondery-color;
+                }
+            }
+            .title span{
+                @include des;
+                text-align: justify
+            }
+        }
+        .content-active{
+            border-bottom: 3px solid $secondery-color;
+        }
+    }
+    .main-card{
+        @include center-items;
+        color: $text-color;
+        .card-list{
+            display: none;
+            width: 100%;
+            height: calc(100% - 137px);
+            margin: 9rem 0;
+            justify-content: center
+            
+        }
+        .card-active{
+            @include center-items;
+            flex-wrap: wrap;
+        }
+        .card{
+            height: 500px;
+            @include background-image;
+            opacity: 0.8;
+            @include center-items;
+            flex-direction: column;
+            margin: auto;
+            cursor: pointer;
+            min-width: 400px;
+            margin: 1rem;
+            &:hover{
+                opacity: 1;
+                transform: scale(1.010);
+            }
+            .card-title{
+                @include title;
+            }
+            .card-des{
+                @include des;
+            }
+        }
+    }
+}
+// Generate card classes with dynamic background images
+// Define a mixin for setting background images
+@mixin set-background($index) {
+    background-image: url("../Images/card-#{$index}.jpg");
+  }
+  
+  // Generate card classes with dynamic background images
+  @for $i from 1 through 12 {
+    .card-#{$i} {
+      @include set-background($i);
+    }}
+
+//about
+.blog{
+    width: 80%;
+    margin: auto;
+    background-color: white;
+    min-height: 100vh;
+    border-radius: 1rem;
+    margin: 2rem auto;
+    .blog-container{
+        @include center-items;
+        .img-container , .content-container{
+            width: 50%;
+            height: 500px;
+        }
+        .img-container{
+            background-color: black;
+            @include background-image;
+        }
+        .content-container{
+            .title{
+                @include title;
+                color: black;
+                margin: 1rem
+            }
+            .des{
+                @include des;
+                color: black;
+                margin: 1rem;
+                font-size: medium;
+                text-align: justify;
+            }
+        }
+    }
+}
+.show{
+    display: none;
+}
+
+@mixin background-images($count) {
+    @for $i from 1 through $count {
+      .img-container-#{$i} {
+        background-image: url(../Images/blog-#{$i}.jpg);
+      }
+    }
+  }
+  
+// Include the mixin
+@include background-images(3);
+
+// Variables
+$primary-color: #222831;
+$background-color: #222831;
+$text-color: white;
+$secondery-color: #F05454;
+$fade-color: linear-gradient(0deg, rgba(34, 40, 49, 1) 0%, rgba(0,0,0,0) 30%);
+$bg-color: #222831;
+
+// Mixins
+@mixin center-items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin center-items-space {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+@mixin background-image {
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+}
+
+@mixin title {
+  font-size: x-large !important;
+  font-weight: bolder;
+  color: $text-color;
+}
+
+@mixin des {
+  font-size: medium !important;
+  font-weight: bold;
+  color: $text-color;
+}
+
+@mixin small_title {
+  font-size: 0.7rem !important;
+}
+
+@mixin small_des {
+  font-size: 0.9rem !important;
+}
+
+@mixin xsmall_title {
+  font-size: 0.9rem !important;
+}
+
+@mixin xsmall_des {
+  font-size: 0.7rem !important;
+}
+
+@mixin x-des {
+  font-size: 0.6rem !important;
+}
+
+// Explore in a video
+.explore {
+  background: linear-gradient(180deg, rgba(34, 40, 49, 1) 0%, rgba(0, 0, 0, 0) 30%);
+  background-image: url(../Images/main2.jpg);
+  @include background-image;
+  position: relative;
+  min-height: 100vh;
+  .content {
+    @include center-items;
+    flex-direction: column;
+    .title {
+      @include title;
+    }
+
+    .explore-container {
+      @include center-items-space;
+      flex-wrap: wrap;
+      margin: 2rem 0;
+
+      .text-container {
+        flex: 1;
+        padding: 1rem;
+        
+        .tips-title {
+          @include title;
+        }
+
+        .des {
+          @include des;
+        }
+
+        ul {
+          padding: 0;
+
+          li {
+            margin: 0.5rem 0;
+            @include des;
+          }
+        }
+      }
+
+      .video-container {
+        padding: 1rem;
+
+        iframe {
+          margin: 1rem
+        }
+      }
+    }
+  }
+
+  .footer {
+    @include center-items-space;
+    padding: 1rem 0;
+    border-top: 1px solid #333;
+    color: $text-color;
+    background: $primary-color;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+
+    .footer-link {
+      color: $secondery-color;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .footer-info {
+      p {
+        margin: 0;
+      }
+    }
+  }
+}
+
+
+//media query
+@media (max-width: 1024px){
+    .header-title {
+        font-size: 5rem !important;
+    }
+    .title{
+        @include small_title;
+    }
+    .des{
+        @include small_des;
+        text-align: justify
+    }
+    .explore-container{
+        flex-direction: column;
+    }
+}
+@media (max-width: 768px){
+    .header-title {
+        font-size: 4rem !important;
+    }
+    .s-title{
+        @include xsmall_title;
+    }
+    .s-des{
+        @include xsmall_des;
+        text-align: justify
+    }
+    .card{
+        width: 60%;
+        height: 500px !important;
+    }
+    .blog-container{
+        flex-direction: column;
+        .img-container, .content-container{
+            width: 100% !important;
+            height: 300px !important;
+        }
+    }
+    .show{
+        display: block !important;
+    }
+    .hide{
+        display: none !important;
+    }
+}
+@media (max-width: 425px){
+    .main-text{
+        display: none !important;
+    }
+    .card{
+        display: flex !important;
+    }
+    .x-des{
+        font-size: 0.9rem !important;
+    }
+    .navbar{
+        display: block !important;
+    }
+    .logo{
+    width: fit-content;
+    }
+    .navlinks{
+        display: none !important;
+    }
+    .text-container{
+        display: none;
+    }
+   .video-container{
+    @include center-items;
+   iframe{
+    width: 100% !important;
+    height: auto;
+    }
+    }
+}
